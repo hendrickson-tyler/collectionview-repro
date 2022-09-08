@@ -1,0 +1,33 @@
+<ActionBar title="My App"></ActionBar>
+
+<GridLayout
+  class="background"
+>
+  <CollectionView
+    [items]="items"
+    [itemTemplateSelector]="templateSelector"
+    autoReloadItemOnLayout="true"
+  >
+    <ng-template cvTemplateKey="item" let-item="item">
+      <StackLayout>
+        <StackLayout
+          class="event-day-card"
+        >
+          <Label
+            [text]="item.main"
+            textTransform="uppercase"
+            class="h4"
+          ></Label>
+          <StackLayout
+            *ngFor="let subItem of item.subItems; let i = index"
+          >
+            <GridLayout rows="auto, auto" columns="auto, *, auto" class="event">
+              <Label [text]="subItem.text" col="1" row="0"></Label>
+            </GridLayout>
+          </StackLayout>
+        </StackLayout>
+        <StackLayout class="spacer"> </StackLayout>
+      </StackLayout>
+    </ng-template>
+  </CollectionView>
+</GridLayout>
